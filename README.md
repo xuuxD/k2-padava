@@ -1,38 +1,38 @@
-### 固件说明 ###
-* 每周5凌晨1点由Github Actions自动编译固件并发布。
-* 固件下载地址：https://github.com/chongshengB/rt-n56u/releases
-* 更新日志:https://github.com/chongshengB/rt-n56u/blob/master/changelog.md
-* 交流群:1020793396
+### Firmware description ###
+* Every week at 5 a.m. by Github Actions automatically compiles firmware and releases。
+* Firmware download address：https://github.com/chongshengB/rt-n56u/releases
+* Update log:https://github.com/chongshengB/rt-n56u/blob/master/changelog.md
+* Exchange Group:1020793396
 
-### 新增以下功能 ###
+### Add the following functions ###
 >- [Adbyby plus+](https://github.com/coolsnowwolf/lede) ```CONFIG_FIRMWARE_INCLUDE_ADBYBY```
 >- [Aliddns] ```CONFIG_FIRMWARE_INCLUDE_ALIDDNS```
 >- [SS plus+](https://github.com/coolsnowwolf/lede) ```CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS```
->- [jq](https://github.com/stedolan/jq) 如jq编译出现错误，请执行sudo apt-get install gcc-multilib 
+>- [jq](https://github.com/stedolan/jq) Such as jq compilation error，Please execute sudo apt-get install gcc-multilib 
 >- [SmartDNS](https://github.com/pymumu/smartdns) ```CONFIG_FIRMWARE_INCLUDE_SMARTDNS```
 
-### 新增适配以下型号 ###
->- B70(感谢Untitled提供荒野无灯的适配文件)
->- JCG-AC856M(感谢群里的旅途中的我适配和测试,gpio值还未完全适配，但不影响使用)
->- JCG-AC836M(感谢群里的碧霄客修改和测试)
->- YK-L1(L1、L1C、L1W通刷)
+### Add the following models ###
+>- B70(Thanks to Untitled for providing wilderness and lightless adaptation files)
+>- JCG-AC856M(Thank you for adapting and testing during the journey in the group,The gpio value has not been fully adapted，But does not affect the use)
+>- JCG-AC836M(Thanks to Bixiaoke in the group for modification and testing)
+>- YK-L1(L1、L1C、L1W through brush)
 >- PSG712
 
 ***
 
-### 特别说明 ###
-* hanwckf源码：https://github.com/hanwckf/rt-n56u
-* 汉化字典来自：https://github.com/gorden5566/padavan
-* hanwckf更新日志：https://www.jianshu.com/p/d76a63a12eae
+### Special Note ###
+* hanwckf source code：https://github.com/hanwckf/rt-n56u
+* Chinese dictionary comes from：https://github.com/gorden5566/padavan
+* hanwckf update log：https://www.jianshu.com/p/d76a63a12eae
 
-### 固件特点 ###
-- 使用[gorden5566](https://github.com/gorden5566/padavan)的汉化字典
-- aria2前端更换为[AriaNg](https://github.com/mayswind/AriaNg)
-- [curl](https://github.com/curl/curl)可选编译可执行程序 ```CONFIG_FIRMWARE_INCLUDE_CURL```
-- 可选关闭webui里不常用的vpn页面 ```CONFIG_FIRMWARE_WEBUI_HIDE_VPN```
-- 使用了[PROMETHEUS](http://pm.freize.net/index.html)提供的部分补丁
-- 使用了[Linaro1985/padavan-ng](https://gitlab.com/padavan-ng/padavan-ng)的部分软件包
-- 可选以下插件：
+### Firmware features ###
+- use[gorden5566](https://github.com/gorden5566/padavan)Chinese dictionary
+- The front end of aria2 is replaced by[AriaNg](https://github.com/mayswind/AriaNg)
+- [curl](https://github.com/curl/curl)Optional compile executable program ```CONFIG_FIRMWARE_INCLUDE_CURL```
+- Optional close vpn page not commonly used in webui ```CONFIG_FIRMWARE_WEBUI_HIDE_VPN```
+- used[PROMETHEUS](http://pm.freize.net/index.html)Some patches provided
+- used[Linaro1985/padavan-ng](https://gitlab.com/padavan-ng/padavan-ng)Part of the package
+- The following plugins are optional：
 >- [scutclient](https://github.com/hanwckf/scutclient) ```CONFIG_FIRMWARE_INCLUDE_SCUTCLIENT```
 >- [gdut-drcom](https://github.com/chenhaowen01/gdut-drcom) ```CONFIG_FIRMWARE_INCLUDE_GDUT_DRCOM```
 >- [dogcom](https://github.com/hanwckf/dogcom) ```CONFIG_FIRMWARE_INCLUDE_DOGCOM```
@@ -62,7 +62,7 @@
 >- [frps](https://github.com/fatedier/frp) ```CONFIG_FIRMWARE_INCLUDE_FRPS```
 >- [tunsafe](https://github.com/TunSafe/TunSafe) ```CONFIG_FIRMWARE_INCLUDE_TUNSAFE```
 
-- 已适配除官方适配外的以下机型
+- Has been adapted to the following models in addition to the official adaptation
 >- PSG1208
 >- PSG1218
 >- PSG712
@@ -93,47 +93,47 @@
 
 ***
 
-### 编译说明 ###
+### Compilation instructions ###
 
-* 安装依赖包
+* Install dependencies
 ```shell
 sudo apt update
 sudo apt install unzip libtool-bin curl cmake gperf gawk flex bison nano xxd \
 cpio git python-docutils gettext automake autopoint texinfo build-essential help2man \
 pkg-config zlib1g-dev libgmp3-dev libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev gcc-multilib
 ```
-* 克隆源码
+* Clone the source code
 ```shell
 git clone --depth=1 https://github.com/chongshengB/rt-n56u.git /opt/rt-n56u
 ```
-* 准备工具链
+* Prepare the toolchain
 ```shell
 cd /opt/rt-n56u/toolchain-mipsel
 
-# 可以从源码编译工具链，这需要一些时间：
+# The toolchain can be compiled from source，It takes some time：
 ./clean_toolchain
 ./build_toolchain
 
-# 或者下载预编译的工具链：
+# Or download the pre-compiled toolchain：
 mkdir -p toolchain-3.4.x
 wget https://github.com/hanwckf/padavan-toolchain/releases/download/v1.0/mipsel-linux-uclibc.tar.xz
 tar -xvf mipsel-linux-uclibc.tar.xz -C toolchain-3.4.x
 ```
-* (可选) 修改机型配置文件
+* (Optional) Modify model configuration file
 ```shell
 nano /opt/rt-n56u/trunk/configs/templates/PSG1218.config
 ```
-* 清理代码树并开始编译
+* Clean up the code tree and start compiling
 ```shell
 cd /opt/rt-n56u/trunk
 sudo ./clear_tree
 sudo ./build_firmware_modify PSG1218
-# 脚本第一个参数为路由型号，在trunk/configs/templates/中
-# 编译好的固件在trunk/images里
+# The first parameter of the script is the routing model，In trunk/configs/templates/中
+# The compiled firmware is in trunk/images in
 ```
 
 ***
 
-### 请参阅 ###
+### See ###
 - https://www.jianshu.com/p/cb51fb0fb2ac
 - https://www.jianshu.com/p/6b8403cdea46
